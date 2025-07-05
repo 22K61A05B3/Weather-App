@@ -1,0 +1,111 @@
+*{
+    box-sizing: border-box;
+}
+body,html{
+    background-color: rgb(45, 39, 45);
+    padding:0;
+    display:grid;
+    justify-content: center;
+    align-content: center;
+    margin:0;
+    height:100vh;
+}
+div.app{
+    background-color: rgb(179, 177, 174);
+    width:300px;
+    border-radius: 10px;
+    overflow: none;
+    display:flex;
+    flex-direction: column;
+}
+div.search{
+    width:100%;
+    align-items: center;
+    display:flex;
+    height:80px;
+    justify-content: space-evenly;
+}
+div.search input.input{
+    width:200px;
+    border-radius:50px;
+    outline:none;
+    border:none;
+    padding-left:20px;
+    height:40px;
+}
+input.input::placeholder
+{
+    color:black;
+}
+div.search button.searchbutton{
+    height:40px;
+    width:40px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline:none;
+    border:none;
+}
+button.searchbutton img{
+    padding-top:4px;
+}
+div.content{
+    padding:0;
+    margin:0;
+    width:100%;
+    display:grid;
+    align-content: center;
+    height:320px;
+}
+div.content div.image{
+    padding:0;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    width:100%;
+    height:100px;
+}
+div.citytemp{
+    justify-items: center;
+    display: grid;
+    width:100%;
+}
+div.citytemp h1{
+    font-size:40px;
+    margin:0;
+}
+div.citytemp h2{
+    font-size: 30px;
+    padding:0;
+    margin:0;
+}
+div.hum-win{
+    display:flex;
+    justify-content: space-around;
+    padding:20px;
+    width:100%;
+}
+div.hum img,div.win img{
+    margin:10px;
+}
+div.hum-win div.hum,div.hum-win div.win{
+    display: flex;
+}
+div.in h4,div.in p{
+    padding-top:6px;
+    margin:0;
+}
+div.content{
+    display:none;
+}
+div.error{
+    display:none;
+    display: none;
+    font-size: 25px;
+    padding:0;
+    margin:0;
+}
+div.error p{
+    margin:0;
+    padding-left:25px;
+    padding-bottom:20px;
+}

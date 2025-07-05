@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+        <title>Weather App</title>
+    </head>
+    <body>
+        <div class="app">
+            <div class="search">
+                <input type="text" class="input" required placeholder="Enter your city" spellcheck="false">
+                <button class="searchbutton"><img src="images/search.png" width="18px;" height="25px"></button>
+            </div>
+            <div class="error"><p>Invalid city name</p></div>
+            <div class="content">
+                <div class="image">
+                    <img class="clouds" src="images/clear.png" width="100px;" height="100px;">
+                </div>
+                <div class="citytemp">
+                    <h1 class="temperature">7°C</h1>
+                    <h2 class="place">New York</h2>
+                </div>
+                <div class="hum-win">
+                    <div class="hum">
+                        <img src="images/humidity.png" width="20px;" height="20px;">
+                        <div class="in">
+                            <h4 class="humidity">48%</h4>
+                            <p>Humidity</p>
+                        </div>
+                    </div>
+                    <div class="win">
+                        <img src="images/wind.png" width="20px;" height="20px;">
+                        <div class="in">
+                            <h4 class="wind">10.29km/h</h4>
+                            <p>Wind Speed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const appKey="30dec2fa96735f193e9ff3d34b218445";
+            const appUrl="https://api.openweathermap.org/data/2.5/weather?units=metric";
+            const inputText=document.getElementsByClassName("input")[0];
+            const inputSearch=document.getElementsByClassName("searchbutton")[0];
+            async function checkWeather(city)
+            {
+                var response=await fetch(appUrl+"&appid="+appKey+"&q="+city);
+                if(response.status==404)
+                {
+                    document.getElementsByClassName("error")[0].style.display="block";
+                    document.getElementsByClassName("content")[0].style.display="none";
+                }
+                else
+                {
+                    document.getElementsByClassName("error")[0].style.display="none";
+                    var data=await response.json();
+                console.log(data);
+                document.getElementsByClassName("temperature")[0].textContent=data.main.temp+"°C";
+                document.getElementsByClassName("place")[0].textContent=data.name;
+                document.getElementsByClassName("humidity")[0].textContent=data.main.humidity+"%";
+                document.getElementsByClassName("wind")[0].textContent=data.wind.speed+"km/h";
+                if(data.weather[0].main=="Clouds")
+                {
+                    document.getElementsByClassName("clouds")[0].src="images/clouds.png";
+                }
+                else if(data.weather[0].main=="Clear")
+                {
+                    document.getElementsByClassName("clouds")[0].src="images/clear.png";
+                }
+                else if(data.weather[0].main=="Snow")
+                {
+                    document.getElementsByClassName("clouds")[0].src="images/snow.png";
+                }
+                else if(data.weather[0].main=="Drizzle")
+                {
+                    document.getElementsByClassName("clouds")[0].src="images/drizzle.png";
+                }
+                else if(data.weather[0].main=="Mist")
+                {
+                    document.getElementsByClassName("clouds")[0].src="images/mist.png";
+                }
+                else if(data.weather[0].main=="Rain")
+                {
+                    document.getElementsByClassName("clouds")[0].src="images/Rain.png";
+                }
+                document.getElementsByClassName("content")[0].style.display="block";
+                }
+            }
+            inputSearch.addEventListener("click",function()
+            {
+                checkWeather(inputText.value);
+            });
+        </script>
+    </body>
+</html>
